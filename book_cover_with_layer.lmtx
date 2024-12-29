@@ -1,0 +1,101 @@
+%%搜索文件的路径
+\usepath[./envs/]
+%%%配置和宏环境
+\environment[env_setting.tex]
+\setupexternalfigures[directory={img}]
+
+
+% 定义纸张尺寸
+\definepapersize[BookCover][
+  width=392.5mm,
+  height=260mm
+]
+\setuppapersize[BookCover][A3,landscape]
+
+
+% 设置页面布局
+\setuplayout[
+  width=392.5mm,
+  height=260mm,
+  topspace=0mm,
+  backspace=0mm,
+  header=0mm,
+  footer=0mm
+]
+
+% 定义三个主要区域的层
+\definelayer[allcover][
+  width=398.5mm,
+  height=266mm,
+  x=-4mm,%???
+  y=-3mm
+]
+
+\definelayer[backcover][
+  width=184mm,
+  height=260mm,
+  x=0mm,
+  y=0mm
+]
+
+\definelayer[spine][
+  width=24.5mm,
+  height=260mm,
+  x=184mm,
+  y=0mm
+]
+
+\definelayer[frontcover][
+  width=184mm,
+  height=260mm,
+  x=208.5mm,
+  y=0mm
+]
+
+%%%%% 显式视觉调试信息 %%%%
+% \disablemode[proofread]% 关闭校对模式
+% \showboxes%盒子
+% \showglyphs%字模轮廓
+% \showframe%框架
+    % \showframe[text]
+% \showmakeup%额外信息
+% \showreferences
+% \tracingnodes1 %1,2
+% 检查log，有无重复引用redundant reference
+
+\starttext
+% 层外必须有内容
+\offset[x=270mm,y=60mm]{\vbox{
+{\tfd 封面标题}
+
+副标题
+}}
+
+
+% 整个版面，放图
+\setlayer[allcover]{
+\clip[width=398.5mm, height=266mm, hoffset=0mm, voffset=0mm]
+{\externalfigure[1原色.jpg][width=398.5mm]}}
+
+
+\setlayer[spine]{
+  % 在这里放置书脊的内容
+  \startalignment[middle]
+  \framed[frame=off, width=24.5mm, height=60mm]{\vbox{\tfb 岁\\月\\自\\珍}}
+  \stopalignment
+}
+
+% \setlayer[backcover][hoffset=]{
+
+%         \framed[frame=off,width=184mm,height=100mm]{\vbox{%
+%         回首向来萧瑟处，归去，也无风雨也无晴。
+
+%         {\hskip3.5em\ttx ——[北宋]苏轼《定风波·莫听穿林打叶声》}}}
+% }
+
+% 显示所有层
+\setupbackgrounds[page][background={allcover,spine,backcover}]
+
+
+\stoptext
+

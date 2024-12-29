@@ -1,0 +1,14 @@
+%%%搜索文件的路径
+\usepath[./envs/]
+%%%%配置和宏环境
+\environment[env_setting.tex]
+
+\startTEXpage[width=10em] 
+\hsize\zeropoint % to see where lines may be broken
+我： “好的！”他说：“好！！？？”
+
+我我：“说。”
+
+—— —— —— —— —— ——————————————— —————————————
+
+\stopTEXpage
